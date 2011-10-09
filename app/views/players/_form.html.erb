@@ -1,0 +1,12 @@
+<%= form_for @player do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name, "Player name, INCLUDE YOUR CHARACTER CODE" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p><%= f.submit "Sign up" %></p>
+<% end %>

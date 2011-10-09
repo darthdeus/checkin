@@ -1,0 +1,14 @@
+<% title "Players" %>
+
+<% if @players.empty?%>
+    <h2>There are no players currently signed up for this tournament</h2>
+<% end %>
+
+<ul>
+    <% @players.each do |player| %>
+        <li><%= player.name %></li>
+    <% end %>
+</ul>
+
+<%= link_to "New players sign up here", new_player_path %>
+
