@@ -1,8 +1,8 @@
 <% title "Edit Player" %>
 
-<%= render 'form' %>
+<% form_tag "/players", :method => :update do %>
+    <%= textarea_tag @emails %>
+    <%= submit_tag "Update" %>
+<% end %>
 
-<p>
-  <%= link_to "Show", @player %> |
-  <%= link_to "View All", players_path %>
-</p>
+<p><%= link_to "Back to list of players", players_path %></p>
