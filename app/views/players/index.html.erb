@@ -3,15 +3,22 @@
 <% if @players.empty?%>
     <h2>There are no players currently signed up for this tournament</h2>
 <% else %>
+
+    <h2>Currently registered users</h2>
     <ul>
         <% @players.each do |player| %>
             <li><%= player.name %> <%= player.email %></li>
         <% end %>
-    </ul>
+    </ul>    
+    
+    <%= form_tag "/players/checkin" do %>
+        <%= text_field_tag :name %> <%= submit_tag "Checkin" %>
+    <% end %>
 <% end %>
 
-<h2><%= link_to 'New players sign up here', new_player_path %></h2>
+<!-- TODO - add this for the next tournament -->
 
-<hr>
+<!-- <h2><%= link_to 'New players sign up here', new_player_path %></h2> -->
 
-<p><%= link_to 'Administration', { :controller => :admin, :action => :index }, :class => "admin-link" %></p>
+
+<p><%= link_to 'admin login', { :controller => :admin, :action => :index }, :class => "admin-link" %></p>

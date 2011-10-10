@@ -1,10 +1,15 @@
 Checkin::Application.routes.draw do
   get "admin/index"
 
-  resources :players
+  resources :players do
+    collection do
+      post 'checkin'
+    end    
+  end
 
   match 'admin' => 'admin#index', :via => :get
   match 'admin/update' => 'admin#update', :via => :put
+  match 'admin/toggle/:id' => 'admin#toggle', :via => :get
   
   root :to => "players#index"
 
