@@ -26,7 +26,6 @@ class PlayersController < ApplicationController
     
     unless @player
       flash[:alert] = "Player with given name isn't registered for the current tournament. Please contact our staff at channel 'SCV Rush' 30 minutes before the tournament starts."
-      redirect_to :action => 'index'
     else
       if @player.checked?
         flash[:alert] = "You are already checked in."
@@ -36,5 +35,7 @@ class PlayersController < ApplicationController
         flash[:notice] = "You have successfully checked in."
       end
     end
+    redirect_to :action => 'index'
+
   end
 end
