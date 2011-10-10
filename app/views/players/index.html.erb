@@ -2,13 +2,16 @@
 
 <% if @players.empty?%>
     <h2>There are no players currently signed up for this tournament</h2>
+<% else %>
+    <ul>
+        <% @players.each do |player| %>
+            <li><%= player.name %></li>
+        <% end %>
+    </ul>
 <% end %>
 
-<ul>
-    <% @players.each do |player| %>
-        <li><%= player.name %></li>
-    <% end %>
-</ul>
+<h2><%= link_to 'New players sign up here', new_player_path %></h2>
 
-<%= link_to "New players sign up here", new_player_path %>
+<hr>
 
+<p><%= link_to 'Administration', { :controller => :admin, :action => :index }, :class => "admin-link" %></p>

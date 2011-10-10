@@ -1,5 +1,10 @@
 Checkin::Application.routes.draw do
+  get "admin/index"
+
   resources :players
+
+  match 'admin' => 'admin#index', :via => :get
+  match 'admin/update' => 'admin#update', :via => :put
   
   root :to => "players#index"
 

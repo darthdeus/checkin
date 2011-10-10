@@ -1,0 +1,18 @@
+
+<% if @players.empty?%>
+    <h2>There are no players currently signed up for this tournament</h2>
+<% else %>
+    <ul>
+        <% @players.each do |player| %>
+            <li><%= player.name %> <%= player.email %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+
+<h3>Fill in emails to update the list of registered users</h3>
+
+<%= form_tag '/admin/update', :method => :put do %>
+    <%= text_area_tag :emails, @emails, :rows => 20, :cols => 40 %>
+    <p>Clicking save will overwrite all existing players! <%= submit_tag "Save!" %></p>
+<% end %>

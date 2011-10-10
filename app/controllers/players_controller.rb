@@ -12,10 +12,6 @@ class PlayersController < ApplicationController
     @player = Player.new
   end
   
-  def edit
-    @emails = Player.all.map(&:email).join("\n")
-  end
-  
 
   def create
     @player = Player.new(params[:player])
