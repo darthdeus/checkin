@@ -17,7 +17,7 @@ class PlayersController < ApplicationController
     if @player.save
       redirect_to :index, :notice => "You have successfully signed up."
     else
-      render :action => 'index'
+      render :action => 'new'
     end
   end
   
@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
     
     unless @player
       flash[:alert] = "Player with given name isn't registered for the current tournament. Please contact our staff at channel 'SCV Rush' 30 minutes before the tournament starts."
+      redirect_to :action => 'index'
     end
     
     if @player.checked?
