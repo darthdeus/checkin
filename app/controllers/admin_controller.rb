@@ -3,18 +3,18 @@ class AdminController < ApplicationController
   
   def index
     @players = Player.all
-    @emails = @players.map(&:email).join("\n")
+    @emails = @players.map { |player| "#{player.email} #{player.name}"}.join("\n")
   end
   
   def update
-    @users = params[:emails]
+    @players = params[:emails]
     # only users from the form will be kept
     Player.destroy_all
     invalid = []
     # create players from all the emails submitted
-    @users.lines.each do |line|
-      email, name = line.gsub(/\s+/, " ").split(/\s/)
-      player = Player.create(:email => email.chomp, :name => name.chomp)
+    @players.lines.each do |line|
+      email, name = line.gsub(/\s+/, " ").split(/\s/).map(&:chomp)
+      player = Player.create(:email => email, :name => name)
       invalid << player unless player.valid?
     end
     flash[:notice] = "Players saved."
