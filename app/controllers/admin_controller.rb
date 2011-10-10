@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :authenticate
-
+  http_basic_authenticate_with :name => "admin", :password => "admin"
   
   def index
     @players = Player.all
@@ -29,11 +28,4 @@ class AdminController < ApplicationController
     redirect_to :action => :index
   end
 
-  protected
-  
-  def authenticate
-    authenticate_or_request_with_http_basic do |username, password|
-      username == "admin" && password == "admin"
-    end
-  end
 end

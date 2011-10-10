@@ -3,17 +3,27 @@
 <% if @players.empty?%>
     <h2>There are no players currently signed up for this tournament</h2>
 <% else %>
-
-    <h2>Currently registered users</h2>
-    <ul>
-        <% @players.each do |player| %>
-            <li><%= player.name %> <%= player.email %></li>
-        <% end %>
-    </ul>    
+    
+    <h2>Checkin</h2>
     
     <%= form_tag "/players/checkin" do %>
+        <p>
+            Enter the email you used to sign up for the tournament.
+        </p>
         <%= text_field_tag :name %> <%= submit_tag "Checkin" %>
     <% end %>
+
+
+    <h2>Currently registered users</h2>
+    
+    <p>Red users are not yet checked in</p>
+    <ul class="player-list">
+        <% @players.each do |player| %>
+            <li class="<%= player.checked? ? "checked" : "unchecked" %>">
+                <%= player.name %> <%= player.email %>
+            </li>
+        <% end %>
+    </ul>
 <% end %>
 
 <!-- TODO - add this for the next tournament -->
