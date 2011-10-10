@@ -1,4 +1,7 @@
 class AdminController < ApplicationController
+  before_filter :authenticate
+
+  
   def index
     @players = Player.all
     @emails = @players.map(&:email).join("\n")
@@ -15,4 +18,11 @@ class AdminController < ApplicationController
     redirect_to :action => :index
   end
 
+  protected
+  
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "admin"
+    end
+  end
 end
