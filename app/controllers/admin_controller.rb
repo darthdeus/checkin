@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   http_basic_authenticate_with :name => "admin", :password => "welikemanners24#"
   
   def index
-    @players = Player.all
+    @players = Player.order("checked DESC, updated_at ASC")
     @emails = @players.map { |player| "#{player.email} #{player.name}"}.join("\n")
   end
   
