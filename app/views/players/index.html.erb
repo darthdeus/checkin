@@ -20,7 +20,7 @@
     <ul class="player-list">
         <% @players.each do |player| %>
             <li class="<%= player.checked? ? "checked" : "unchecked" %>">
-                <%= player.name %> <%= player.email %>
+                <%= player.name %>
             </li>
         <% end %>
     </ul>

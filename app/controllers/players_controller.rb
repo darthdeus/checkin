@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   def index
     @player = Player.new
-    @players = Player.all
+    @players = Player.order("checked DESC, updated_at ASC")
   end
 
   def show

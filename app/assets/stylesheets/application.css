@@ -100,7 +100,7 @@ h1 span {
 h1 + p {
     position: relative;
     top: -30px;
-    left: 400px;
+    left: 460px;
     font-size: 10px;
 }
 
@@ -129,18 +129,25 @@ h1 + p a:hover {
 .player-list {
     margin: 0;
     padding: 0;
-    width: 300px;
+    width: 500px;
 }
 
 .player-list li {
     list-style: none;
-    padding: 10px;
+    padding: 5px 10px;
+
 }
 
 /*.checked, .unchecked { background: rgba(); }*/
-.checked { background: rgba(180, 255, 180, 0.8); }
+.checked { 
+    background: rgba(180, 255, 180, 0.8);
+    border-bottom: 1px solid rgba(180, 255, 180, 1);
+}
 .checked:hover { background: rgba(180, 255, 180, 1); }
-.unchecked { background: rgba(255, 180, 180, 0.8); }
+.unchecked { 
+    background: rgba(255, 180, 180, 0.8); 
+    border-bottom: 1px solid rgba(255, 180, 180, 1);
+}
 .unchecked:hover { background: rgba(255, 180, 180, 1); }
 
 .toggle-checkin {

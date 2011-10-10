@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  http_basic_authenticate_with :name => "admin", :password => "admin"
+  http_basic_authenticate_with :name => "admin", :password => "welikemanners24#"
   
   def index
     @players = Player.all
@@ -7,14 +7,15 @@ class AdminController < ApplicationController
   end
   
   def update
-    @emails = params[:emails]
+    @users = params[:emails]
     # only users from the form will be kept
     Player.destroy_all
     invalid = []
     # create players from all the emails submitted
-    @emails.split(/\s/).each do |email|
-      player = Player.create(:email => email.chomp)
-      invalid << email unless player.valid?
+    @users.lines.each do |line|
+      email, name = line.gsub(/\s+/, " ").split(/\s/)
+      player = Player.create(:email => email.chomp, :name => name.chomp)
+      invalid << player unless player.valid?
     end
     flash[:notice] = "Players saved."
     redirect_to :action => :index
