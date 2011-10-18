@@ -1,14 +1,22 @@
-
 <% if @players.empty?%>
     <h2>There are no players currently signed up for this tournament</h2>
 <% else %>
+
+    <% unless @invalid.empty? %>
+    <h2>Unable to save these players</h2>
+    
+        <% @invalid.each do |invalid| %>
+            <p><%= invalid %></p>
+        <% end %>
+    <% end %>
+
     <h2>Currently registered users</h2>
     
     <p>Players in green are already checked in.</p>
     <ul class="player-list">
         <% @players.each do |player| %>
             <li class="<%= player.checked? ? "checked" : "unchecked" %>">
-                <%= player.name %> <%= player.email %>
+                <%= player.email %> <%= player.name %>
                 <%= link_to "toggle checkin", { :controller => :admin, :action => :toggle, :id => player.id }, :class => "toggle-checkin" %>
             </li>
         <% end %>

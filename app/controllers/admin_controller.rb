@@ -3,7 +3,10 @@ class AdminController < ApplicationController
   
   def index
     @players = Player.order("checked DESC, updated_at ASC")
-    @emails = @players.map { |player| "#{player.email} #{player.name}"}.join("\n")
+    @emails = @players.map { |player| "#{player.email}|#{player.name}"}.join("\n")
+    
+    @invalid = session[:invalid] || []
+    session[:invalid] = nil
   end
   
   def update
@@ -13,11 +16,17 @@ class AdminController < ApplicationController
     invalid = []
     # create players from all the emails submitted
     @players.lines.each do |line|
-      email, name = line.gsub(/\s+/, " ").split(/\s/).map(&:chomp)
-      player = Player.create(:email => email, :name => name)
-      invalid << player unless player.valid?
+      match = line.match(/(.+)\|(\w+\.\d+)/)
+      if match
+        email = match[1]
+        name = match[2]      
+        player = Player.create(:email => email, :name => name)
+      else
+        invalid << line
+      end
     end
     flash[:notice] = "Players saved."
+    session[:invalid] = invalid
     redirect_to :action => :index
   end
 
