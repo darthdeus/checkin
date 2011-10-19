@@ -44,5 +44,11 @@ module Checkin
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    config.generators do |g|
+      g.test_framework :rspec, :views => false, :fixture => false#, :fixture => true
+      # TODO - add factory girl to Gemfile and start generating fixtures
+      # g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+    end
   end
 end

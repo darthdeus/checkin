@@ -8,6 +8,17 @@ class AdminController < ApplicationController
     @invalid = session[:invalid] || []
     session[:invalid] = nil
   end
+
+  def create
+    @player = Player.new
+    @player.parse_input(params[:player_data])
+    
+    if @player.save
+      flash[:notice] = "Player successfuly added."
+    else
+      flash[:error] = "Unable to save player, most likely due to wrong format."
+    end
+  end
   
   def update
     @players = params[:emails]

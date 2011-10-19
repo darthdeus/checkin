@@ -29,4 +29,19 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-gem "mocha", :group => :test
+# using rspec default mocking library?
+# gem "mocha", :group => :test
+
+group :test, :development do
+  gem 'rspec-rails'
+end
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+  gem 'rspec'
+  gem 'cucumber-rails'  
+  gem 'database_cleaner'
+  gem 'webrat'
+  gem 'capybara'
+end
