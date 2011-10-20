@@ -34,17 +34,20 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-inotify', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fchange', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'spork', '> 0.9.0.rc'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'growl'
+  gem 'spork', '> 0.9.0.rc'
 end
 
 group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
-  gem 'rspec'
   gem 'cucumber-rails'  
   gem 'database_cleaner'
   gem 'webrat'
   gem 'capybara'
-  gem 'ZenTest', '~> 4.4.2'
-  gem 'autotest-rails', '~> 4.1.0'
-  gem 'spork', '> 0.9.0.rc'
+  gem 'factory_girl_rails'  
 end
