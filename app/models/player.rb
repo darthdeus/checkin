@@ -9,8 +9,6 @@ class Player < ActiveRecord::Base
     player
   end
   
-  protected
-  
   def parse_data(data)
     match = data.match(/(.+)\|(\w+\.\d+)/)
     if match
