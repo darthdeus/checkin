@@ -44,4 +44,7 @@ group :test do
   gem 'database_cleaner'
   gem 'webrat'
   gem 'capybara'
+  gem 'ZenTest', '~> 4.4.2'
+  gem 'autotest-rails', '~> 4.1.0'
+  gem 'spork', '> 0.9.0.rc'
 end

@@ -10,8 +10,7 @@ class AdminController < ApplicationController
   end
 
   def create
-    @player = Player.new
-    @player.parse_input(params[:player_data])
+    @player = Player.from_data(params[:player_data])
     
     if @player.save
       flash[:notice] = "Player successfuly added."
