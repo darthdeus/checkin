@@ -16,4 +16,9 @@ class Player < ActiveRecord::Base
       self.name = match[2]
     end
   end
+  
+  def checkin!
+    self.checked = true
+    self.save!
+  end
 end

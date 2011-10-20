@@ -28,5 +28,20 @@ describe Player do
       player = Player.from_data(@invalid_data)
       player.should_not be_valid
     end
+
+    context "checkin" do
+      it "should set checkin status to true" do
+        player = Player.from_data(@valid_data)
+        player.checkin!
+        player.checked.should be_true
+      end
+      
+      it "should throw an exception whentrying to checkin an invalid user" do
+        player = Player.new
+        lambda { player.checkin! }.should raise_error
+      end
+    end
+
   end
+  
 end
