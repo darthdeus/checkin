@@ -6,7 +6,6 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', :group => :production
-gem 'sqlite3', :groups => [:development, :test]
 
 gem 'json'
 gem 'nifty-generators', :group => :development
@@ -32,19 +31,19 @@ gem 'jquery-rails'
 # using rspec default mocking library?
 # gem "mocha", :group => :test
 
-group :test, :development do
+group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'rb-inotify', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'rb-fchange', :require => false if RUBY_PLATFORM =~ /darwin/i
+  group :darwin do
+    gem 'rb-fsevent', :require => false
+    gem 'rb-inotify', :require => false
+    gem 'rb-fchange', :require => false
+  end
   gem 'spork', '> 0.9.0.rc'
-  gem 'guard-rspec'
-  gem 'guard-spork'
+  gem 'guard-rspec', :require => false
+  gem 'guard-spork', :require => false
   gem 'growl'
   gem 'spork', '> 0.9.0.rc'
-end
-
-group :test do
   gem 'cucumber-rails'  
   gem 'database_cleaner'
   gem 'webrat'
