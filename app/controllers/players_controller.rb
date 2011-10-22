@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(params[:player])
     if @player.save
-      redirect_to :index, :notice => "You have successfully signed up."
+      redirect_to root_path, :notice => "You have successfully signed up."
     else
       render :action => 'new'
     end
