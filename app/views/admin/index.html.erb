@@ -28,5 +28,7 @@
 
 <%= form_tag '/admin/update', :method => :put do %>
     <%= text_area_tag :emails, @emails, :rows => 20, :cols => 40 %>
-    <p>Clicking save will overwrite all existing players! <%= submit_tag "Save!" %></p>
+    <p>Clicking save will overwrite all existing players! <%= submit_tag "Save!", :confirm => "Are you sure you want to add a new list of players and remove all current check-ins?"  %></p>
+    
+    <p><%= link_to 'Add only ONE player', new_player_path %></p>
 <% end %>
